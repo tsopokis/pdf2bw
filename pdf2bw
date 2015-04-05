@@ -1,0 +1,7 @@
+#!/bin/bash
+# This script is created by Yannis Tsopokis and is under the AGPL v3
+basename=$(basename "$1" .pdf)
+#pdf2ps -sDEVICE=psgray "${basename}.pdf"  #older version
+pdf2ps -sDEVICE=ps2write -dProcessColorModel=/DeviceGray -dColorConversionStrategy=/Gray  "${basename}.pdf"
+ps2pdf "${basename}.ps" "${basename}-bw.pdf"
+rm "${basename}.ps"
